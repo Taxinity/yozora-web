@@ -44,6 +44,14 @@ class P {
 		} else {
 			$onlineUsers = $onlineUsers["result"];
 		}
+		
+		$registeredUsers = getJsonCurl("http://127.0.0.1:5001/api/v1/registeredUsers");
+		if ($registeredUsers == false) {
+			$registeredUsers = 0;
+		} else {
+			$registeredUsers = $registeredUsers["result"];
+		}
+		
 		// Print admin dashboard
 		echo '<div id="wrapper">';
 		printAdminSidebar();
@@ -1243,7 +1251,8 @@ class P {
 		}
 		echo '<img src="/images/logos/circle.png">';
 		global $isBday;
-		echo '<h1>Welcome to Yozora</h1>';
+		echo '<h1>Welcome to Yozora</h1>'
+		print ($registeredUsers, 'Registered users');
 		
 		// Home alert
 		self::HomeAlert();
